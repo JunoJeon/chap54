@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +10,11 @@
 <script type="text/javascript">
 window.onload = () => {
 	population.oninput = function(e) {
-		let value = e.target.value;
-		pop_value.innerText = value.toLocaleString;
+		let value = parseInt(e.target.value);
+		pop_value.innerText = value.toLocaleString();
 		
 	}
-	pop_value.innerText = parseInt(population.value).toLocaleString;
+	pop_value.innerText = parseInt(population.value).toLocaleString();
 }
 </script>
 </head>
@@ -57,7 +58,7 @@ window.onload = () => {
 				<td>${city.name}</td>
 				<td>${city.countryCode}</td>
 				<td>${city.district}</td>
-				<td>${city.population}</td>
+				<td align="right"><fmt:formatNumber pattern="###,###,###,###" value="${city.population}"/></td>
 			</tr>
 		</c:forEach>
 	</tbody>
