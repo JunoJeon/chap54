@@ -57,4 +57,10 @@ public class CountryMapperTest {
 		list2.add(30);
 		assertThat(list2).allMatch(e -> e<40);
 	}
+	
+	@Test
+	void selectAllByContinentAndRegion() {
+		var list = mapper.selectAllByContinentAndRegion("Asia", "Eastern Asia");
+		assertThat(list).allMatch(c -> c.getContinent().equals("Asia") && c.getRegion().equals("Eastern Asia"));
+	}
 }

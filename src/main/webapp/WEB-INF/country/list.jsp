@@ -7,6 +7,50 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
+<script type="text/javascript">
+
+function setRegions(regions) {
+	console.log(regions)
+	let region = document.forms[0].region
+	region.innerText = "";
+	
+	let regionParam = new URL(location.href).searchParams.get('region');
+	
+	let option = document.createElement('option');
+	option.value = '';
+	option.innerText = '전체';
+	if(regionParam == null || regionParam == '')
+		option.selected = true;
+	
+	region.append(option);
+	
+	for (let r of regions) {
+		let option = document.createElement('option');
+		option.value = r;
+		option.innerText = r;
+		if (r == regionParam)
+			option.selected = true;
+		region.append(option);
+	}
+}
+
+
+window.onload = function()  {
+	let continent = document.forms[0].continent;
+	
+	continent.onchange = function() {
+		console.log(this.value);
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', `/country/regions?continent=\${this.value}`)
+		xhr.send();
+		xhr.onload = e => {
+			setRegions(JSON.parse(xhr.responseText));
+		}
+	}
+	
+	continent.onchange();
+}
+</script>
 </head>
 <body>
 <h1>Country List</h1>
@@ -33,17 +77,7 @@
 	</c:forEach>
 </select>
 <select name="region">
-	<c:choose>
-	<c:when test="">
-		<option value="" selected="selected">전체</option>
-	</c:when>
-	<c:otherwise>
-		<option value="">전체</option>
-	</c:otherwise>
-	</c:choose>
-	<c:forEach var="region" items="${regions}">
-		<option value="${region}">${region}</option>
-	</c:forEach>
+<!--  option은 javascript에서 ajax를 이용하여 만들고있음 -->
 </select>
 	<input type="submit" value="조회">
 </form>
@@ -70,7 +104,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	 	<c:forEach var="c" items="${list}">
+	 	<c:forEach var="c" items="${list}" varStatus="status">
 		<tr>
 			<td>${status.count}</td>
 			<td>${c.code}</td>

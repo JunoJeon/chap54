@@ -2,16 +2,19 @@ package com.example.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.util.Alpha;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class AjaxController {
- 
+	// AJAX(Asyncrous Javascript And XML)
 	@GetMapping("/ajax")
 	void ajax(Model model) {
 		
@@ -27,9 +30,16 @@ public class AjaxController {
 		model.addAttribute("surface", rect);
 	}
 	
+	@Autowired
+	ObjectMapper json;
+	
 	@GetMapping("/alpha")
 	@ResponseBody // 뷰로 포워드되지않고 즉시 서버로 포워드시킬때써야함
-	Alpha generatior() { //String void가 아니라 Alpha를주어서 뷰로 포워드하지않고 값자체가 즉시 문자열로 리턴된다.
+	Alpha generatior() throws InterruptedException { //String void가 아니라 Alpha를주어서 뷰로 포워드하지않고 값자체가 즉시 문자열로 리턴된다.
+		Thread.sleep(10000);
 		return new Alpha();
 	}
+//	String generator() throws JsonProcessingException {
+//		return json.writeValueAsString(new Alpha());
+//	}
 }
