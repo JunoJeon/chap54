@@ -7,6 +7,38 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
+<style type="text/css">
+*{
+	padding: 10px;
+		
+ }
+#heading {
+		
+		color :red;
+		
+    	 }
+    	 
+td {
+
+	border : 1px solid red;
+
+}
+#heading, td {
+		
+		text-decoration: overline;
+		
+    	 }
+    	 
+table td {
+		
+		text-decoration:  underline;
+		
+    	 }
+ 
+ tbody > tr:hover {
+ 	background: blue;
+ }
+</style>
 <script type="text/javascript">
 
 function setRegions(regions) {
@@ -53,7 +85,7 @@ window.onload = function()  {
 </script>
 </head>
 <body>
-<h1>Country List</h1>
+<h1 id="heading">Country List</h1>
 <hr>
 <form action="/country/list">
 <select name="continent">
