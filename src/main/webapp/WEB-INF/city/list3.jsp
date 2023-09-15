@@ -7,6 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>list3.jsp</title>
+<style type="text/css">
+tbody > tr:nth-child(2n) {
+	background: teal;
+}
+</style>
 <script type="text/javascript">
 window.onload = () => {
 	population.oninput = function(e) {
