@@ -6,9 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>list3.jsp</title>
+<title>list.jsp</title>
 <style type="text/css">
+tbody > tr:nth-child(n) {
+	color : white;
+	background: navy;
+}
 tbody > tr:nth-child(2n) {
+	color : white;
 	background: teal;
 }
 </style>

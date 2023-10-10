@@ -36,7 +36,7 @@ table td {
     	 }
  
  tbody > tr:hover {
- 	background: blue;
+ 	background: silver;
  }
 </style>
 <script type="text/javascript">

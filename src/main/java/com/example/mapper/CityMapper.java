@@ -19,7 +19,7 @@ public interface CityMapper {
 	@Select("""
 			select * 
 				from city
-			   where country_code = #{code, jdbcType=VARCHAR}	
+			   where countryCode = #{code, jdbcType=VARCHAR}	
 			""")
 	List<City> selectAllByCode(String code);
 	
